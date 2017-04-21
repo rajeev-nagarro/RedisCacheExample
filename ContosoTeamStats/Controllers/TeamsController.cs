@@ -184,7 +184,7 @@ namespace ContosoTeamStats.Controllers
             string cacheConnection = ConfigurationManager.AppSettings["CacheConnection"].ToString();
             return ConnectionMultiplexer.Connect(cacheConnection);
         });
-
+        
         private void PlayGames()
         {
             ViewBag.msg += "Updating team statistics. ";
@@ -289,7 +289,6 @@ namespace ContosoTeamStats.Controllers
         {
             List<Team> teams = null;
             IDatabase cache = Connection.GetDatabase();
-
             // If the key teamsSortedSet is not present, this method returns a 0 length collection.
             var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
             if (teamsSortedSet.Count() == 0)
